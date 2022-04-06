@@ -87,7 +87,7 @@ int main(int argc, char const *argv[]) {
       switch (ch) {
         case 'c':
           scanf("%2d", &num);
-          VectorAppend(num);
+          VectorAppend(v, num);
           break;
         default:
           continue;
