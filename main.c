@@ -21,6 +21,7 @@
 // TODO 多界面，清理界面函数复用，每个界面都继承父界面
 // TODO FrameBuffer试用你好
 
+
 void printBackground() {
   int background[WIDTH][HEIGHT];
   for (int i = 0; i < HEIGHT; i++) {
