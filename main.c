@@ -1,3 +1,9 @@
+#define WIDTH 20
+#define HEIGHT 20
+
+#define TYPE int
+#define SIZE 15
+
 #include <stdio.h>
 #include <string.h>
 #include <time.h>
@@ -6,9 +12,9 @@
 #include "CSI.h"
 #include "utilities.h"
 #include "objects.h"
+#include "structs/Vector.h"
 
-#define WIDTH 20
-#define HEIGHT 20
+
 
 
 // TODO debug()函数，宏控制，测试时打印，不测试不打印。
@@ -37,12 +43,12 @@ void* qThreadRun(void* arg){
   }
 }
 
-int main(int argc, char const *argv[]) {
-  printf(ED(2) CUP(1,1));
-  printBackground();
+int echoElement(TYPE node){
+  printf("%d\n", node);
+  return 0;
+}
 
-  Node Foods[10];
-  Snake snake;
+int main(int argc, char const *argv[]) {
 
   int res;
   pthread_t qThread;
@@ -52,12 +58,42 @@ int main(int argc, char const *argv[]) {
     printf("Thread created failed!");
     return 0;
   }
-  
+
+  // printf(ED(2) CUP(1,1));
+  // printBackground();
+
+  //lcrud abstract to operation
+  //first step: list, before list, you should var them.
+
+  // Node Foods[10];
+  // Snake snake;
+  // SnakeNode snakeHead;
+  //
+  // snake.length = 3;
+  // snakeHead.node.x = 5;
+  // snakeHead.node.y = 5;
+  // snake.head = &snakeHead;
+
+
+  int test[10] = {1,2,3,4,5,10,5,6,6,6};
+  int num = 0;
+
+  Vector v = VectorInit(test);
+  VectorList(v, echoElement);
 
   while (1) {
     if (_kbhit()) {
-      if(getch() == 'w')break;
+      char ch = getch();
+      switch (ch) {
+        case 'c':
+          scanf("%2d", &num);
+          VectorAppend(num);
+          break;
+        default:
+          continue;
+      }
     }
+
     time_t result = time(NULL);
     printf("%s"CPL(1) EL(2) CHA(1), asctime(gmtime(&result)));
     usleep(1e5);

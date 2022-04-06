@@ -1,17 +1,22 @@
-typedef struct Node{
+typedef struct Node Node;
+typedef struct SnakeNode SnakeNode;
+typedef struct Snake Snake;
+
+struct Node{
 	int x;
 	int y;
-}Node;
+};
 
-typedef struct SnakeNode{
-	struct SnakeNode* prev;
+struct SnakeNode{
+	SnakeNode* prev;
+  SnakeNode* next;
   Node node;
-}SnakeNode;
+};
 
-typedef struct Snake{
-	struct SnakeNode* head;
+struct Snake{
+	SnakeNode* head;
 	int length;
-}Snake;
+};
 
 int echoNode(Node node);
 int echoSnake(Snake snake);
